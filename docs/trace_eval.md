@@ -63,7 +63,7 @@ Dán 1 đoạn trích xuất log tiêu biểu từ file `docs/trace_waterfall.js
 
 ## 3. TỔNG KẾT KẾT QUẢ NGHIỆM THU & NỘP BÀI
 
-- [x] Đã cấu hình cấu trúc API Key trong `.env` sẵn sàng kết nối LLM API thật (Gemini `gemini-2.0-flash`).
+- [x] Đã điền API Key thật trong `.env` và xác nhận Agent chạy mượt mà trên LLM API thật (Google Gemini `gemini-3.6-flash`).
 - **Tổng số Test Cases đã chạy thành công:** 5 / 5 test cases.
 - **Số lượt gọi Tool qua MCP Server chính xác:** 4 / 4 lượt (TC02 tra cứu, TC03 đặt lịch, TC04 tra cứu và đặt lịch, TC05 xử lý edge case NOT_FOUND).
 - **Kết quả đẩy Repo nộp bài:** [x] Đã Commit và Push mã nguồn thành công lên GitHub cá nhân.
