@@ -36,21 +36,26 @@ class MockOfflineProvider(BaseLLMProvider):
 
     def generate_with_tools(self, prompt: str, tools_schema: List[Dict[str, Any]], system_prompt: str = "") -> Dict[str, Any]:
         prompt_lower = prompt.lower()
+        import re
+        match_sv = re.search(r'sv\d+', prompt_lower)
+        sid = match_sv.group(0).upper() if match_sv else "SV2026001"
         
         # Mô phỏng nhận diện intent gọi Tool
-        if "sv2026001" in prompt_lower and "đặt lịch" in prompt_lower:
+        if "đặt lịch" in prompt_lower or "appointment" in prompt_lower:
+            advisor = "TS. Lê Thị B" if sid == "SV2026002" else "PGS.TS Nguyễn Văn A"
+            time_str = "09:00 20/09/2026" if sid == "SV2026002" else "14:00 15/09/2026"
             return {
                 "type": "tool_call",
                 "tool_name": "schedule_appointment",
-                "arguments": {"student_id": "SV2026001", "datetime_str": "14:00 15/09/2026", "advisor_name": "PGS.TS Nguyễn Văn A"},
-                "thought": "Người dùng yêu cầu đặt lịch hẹn tư vấn cho sinh viên SV2026001. Tôi sẽ gọi tool schedule_appointment."
+                "arguments": {"student_id": sid, "datetime_str": time_str, "advisor_name": advisor},
+                "thought": f"Người dùng yêu cầu đặt lịch hẹn tư vấn cho sinh viên {sid}. Tôi sẽ gọi tool schedule_appointment."
             }
-        elif "sv2026001" in prompt_lower or "tra cứu" in prompt_lower:
+        elif any(kw in prompt_lower for kw in ["tra cứu", "thông tin", "hồ sơ", "kiểm tra"]) and match_sv:
             return {
                 "type": "tool_call",
                 "tool_name": "academic_query",
-                "arguments": {"student_id": "SV2026001"},
-                "thought": "Người dùng muốn tra cứu thông tin học vụ của sinh viên SV2026001. Tôi sẽ gọi tool academic_query."
+                "arguments": {"student_id": sid},
+                "thought": f"Người dùng muốn tra cứu thông tin học vụ của sinh viên {sid}. Tôi sẽ gọi tool academic_query."
             }
         else:
             return {
@@ -64,7 +69,7 @@ class GeminiProvider(BaseLLMProvider):
     """Google Gemini Provider (Native Tool Calling với Google GenAI SDK)"""
     def __init__(self, api_key: str = None, model: str = None):
         self.api_key = api_key or os.getenv("GEMINI_API_KEY")
-        self.model_name = model or os.getenv("LLM_MODEL") or "gemini-2.5-flash"
+        self.model_name = model or os.getenv("LLM_MODEL") or "gemini-2.0-flash"
 
     def generate(self, prompt: str, system_prompt: str = "") -> str:
         if not self.api_key or self.api_key == "your_gemini_api_key_here":
