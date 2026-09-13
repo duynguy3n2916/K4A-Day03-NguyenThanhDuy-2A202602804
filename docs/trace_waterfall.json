@@ -1,120 +1,174 @@
 [
   {
     "step": 1,
-    "query": "Chào bạn, bạn có thể giới thiệu quy chế học vụ cơ bản của Đại học VinUni không?",
+    "query": "Người mới nên bắt đầu tập luyện bao nhiêu buổi mỗi tuần?",
     "action_type": "FINAL_ANSWER",
-    "thought": "Gemini phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
-    "output": "Chào bạn! Rất vui được hỗ trợ bạn. Dưới đây là tóm tắt một số quy chế học vụ cơ bản và quan trọng tại Đại học VinUni mà sinh viên cần nắm rõ:\n\n---\n\n### 1. Hệ thống Tín chỉ và Thời gian Đào tạo\n* **Đơn vị tích lũy:** Khối lượng học tập được tính bằng **Tín chỉ (Credit)**. \n* **Thời gian đào tạo chuẩn:** \n  * Chương trình Cử nhân (BS/BA): 3 - 4 năm tùy ngành.\n  * Chương trình Bác sĩ Y khoa (MD): 6 năm.\n* **Tải lượng học tập (Course Load):**\n  * **Toàn thời gian (Full-time):** Thường đăng ký từ 12 - 18 tín chỉ/học kỳ chính (Học kỳ 1 & 2).\n  * Đăng ký dưới 12 tín chỉ hoặc trên 18 tín chỉ cần có sự phê duyệt của Cố vấn Học tập (Academic Advisor) và Ban Giám hiệu Khoa.\n\n---\n\n### 2. Thang điểm và Đánh giá Học tập (Grading System)\n* **Thang điểm chữ (Letter Grade) & Điểm trung bình (GPA):**\n  * VinUni áp dụng thang điểm chữ từ **A+ đến F**, tương ứng với thang điểm GPA **4.0**.\n  * **GPA (Grade Point Average):** Điểm trung bình tích lũy được tính dựa trên số tín chỉ của từng môn học.\n* **Điểm tối thiểu để duy trì tình trạng học tập tốt (Good Academic Standing):** \n  * Sinh viên cần duy trì GPA tích lũy (cGPA) đạt từ **2.0/4.0** trở lên.\n\n---\n\n### 3. Tình trạng Học tập & Cảnh báo Học vụ (Academic Standing & Probation)\n* **Cảnh báo học vụ (Academic Probation):** Sinh viên có GPA học kỳ hoặc cGPA dưới **2.0/4.0** sẽ bị đưa vào tình trạng Cảnh báo học vụ.\n* **Hỗ trợ học vụ:** Sinh viên trong diện cảnh báo sẽ nhận được sự hỗ trợ sát sao từ Cố vấn Học tập (Academic Advisor) và Trung tâm Hỗ trợ Học tập để cải thiện kết quả.\n* **Buộc xuất học / Tình trạng nghiêm trọng:** Nếu kết quả không cải thiện sau các kỳ cảnh báo liên tiếp theo quy định, sinh viên có thể đối mặt với hình thức đình chỉ hoặc buộc thôi học.\n\n---\n\n### 4. Quy định về Chuyên cần và Liêm chính Học thuật (Academic Integrity)\n* **Điểm danh & Chuyên cần:** Sinh viên phải đảm bảo tỷ lệ tham gia lớp học theo yêu cầu riêng của từng môn (thường tối thiểu 80%). Vi phạm có thể dẫn đến việc không được dự thi/đánh giá cuối kỳ.\n* **Liêm chính Học thuật (Academic Integrity):** VinUni áp dụng chính sách **Zero Tolerance** (Không dung thứ) đối với các hành vi gian lận, đạo văn (plagiarism), nộp bài trùng lặp hoặc gian lận thi cử. Mọi vi phạm sẽ bị xử lý nghiêm khắc theo Hội đồng Liêm chính Học thuật (Academic Integrity Board).\n\n---\n\n### 5. Đăng ký Môn học, Rút môn & Hoãn học\n* **Đăng ký môn học (Course Registration):** Thực hiện trực tuyến trước mỗi học kỳ theo lịch của Phòng Quản lý Dược / Phòng Học vụ (Office of the Registrar).\n* **Thêm/Hủy môn (Add/Drop Period):** Thường diễn ra trong 1–2 tuần đầu tiên của học kỳ mà không ảnh hưởng đến bạ học tập.\n* **Rút môn muộn (Course Withdrawal - Đạt điểm 'W'):** Cho phép rút môn sau thời hạn Add/Drop (theo hạn định của trường), môn học sẽ ghi nhận điểm 'W' và không tính vào GPA.\n\n---\n\nNếu bạn cần tra cứu hồ sơ học vụ cá nhân hoặc đặt lịch tư vấn với Cố vấn Học tập, hãy cung cấp **Mã sinh viên (Student ID)** để mình hỗ trợ nhé!",
-    "latency_ms": 8882.21
+    "thought": "Gemini trả lời trực tiếp.",
+    "output": "Đối với người mới bắt đầu, tần suất tập luyện lý tưởng thường là **2 đến 3 buổi mỗi tuần**. \n\nDưới đây là lý do và lộ trình gợi ý:\n\n1.  **Thời gian phục hồi:** Cơ bắp và hệ xương khớp của người mới cần thời gian để thích nghi với áp lực mới. Nghỉ ngơi giữa các buổi tập giúp tránh chấn thương và tình trạng quá tải.\n2.  **Xây dựng thói quen:** Bắt đầu với 2-3 buổi giúp bạn dễ dàng duy trì kỷ luật mà không cảm thấy bị ngợp bởi lịch trình quá dày đặc.\n3.  **Cường độ:** Mỗi buổi tập nên kéo dài từ 30-45 phút, tập trung vào các bài tập toàn thân (Full Body) để kích hoạt mọi nhóm cơ.\n\nSau khoảng 4-6 tuần, khi cơ thể đã quen dần, bạn có thể tăng lên 4 buổi mỗi tuần hoặc tăng cường độ tập luyện trong mỗi buổi. Quan trọng nhất là sự kiên trì và lắng nghe cơ thể mình!",
+    "llm_latency_ms": 4513.47,
+    "test_id": "TC01",
+    "test_passed": true
   },
   {
     "step": 1,
-    "query": "Hãy tra cứu thông tin học vụ của sinh viên SV2026001.",
+    "query": "Hãy tra cứu hồ sơ luyện tập của hội viên MB001.",
     "action_type": "TOOL_EXECUTION",
-    "tool_name": "academic_query",
+    "thought": "Gemini chọn công cụ health_profile_query.",
+    "tool_name": "health_profile_query",
     "arguments": {
-      "student_id": "SV2026001"
+      "member_id": "MB001"
     },
     "observation": {
       "status": "SUCCESS",
-      "student_id": "SV2026001",
+      "member_id": "MB001",
       "data": {
-        "full_name": "Nguyễn Văn An",
-        "class": "AI-K4",
-        "gpa": 3.85,
-        "email": "an.nv@vinuni.edu.vn",
-        "status": "Đang học",
-        "advisor": "PGS.TS Nguyễn Văn A"
+        "full_name": "Nguyễn Minh Anh",
+        "age": 24,
+        "fitness_goal": "Giảm cân",
+        "current_weight_kg": 68,
+        "target_weight_kg": 60,
+        "fitness_level": "Cơ bản",
+        "trainer": "HLV Trần Quốc Bảo",
+        "status": "Đang hoạt động"
       }
     },
-    "latency_ms": 1772.22
+    "llm_latency_ms": 1745.94,
+    "tool_latency_ms": 0.09,
+    "test_id": "TC02",
+    "test_passed": true
   },
   {
     "step": 2,
-    "query": "Hãy tra cứu thông tin học vụ của sinh viên SV2026001.",
+    "query": "Hãy tra cứu hồ sơ luyện tập của hội viên MB001.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
-    "output": "Kết quả tra cứu cho sinh viên SV2026001 (Nguyễn Văn An): Lớp AI-K4, GPA: 3.85, Email: an.nv@vinuni.edu.vn, Trạng thái: Đang học, Cố vấn: PGS.TS Nguyễn Văn A.",
-    "latency_ms": 10.0
+    "thought": "Gemini trả lời trực tiếp.",
+    "output": "Hồ sơ luyện tập của hội viên **Nguyễn Minh Anh (MB001)** như sau:\n\n*   **Tuổi:** 24\n*   **Mục tiêu:** Giảm cân (Từ 68kg xuống 60kg)\n*   **Trình độ:** Cơ bản\n*   **Huấn luyện viên phụ trách:** HLV Trần Quốc Bảo\n*   **Trạng thái:** Đang hoạt động",
+    "llm_latency_ms": 2445.27,
+    "test_id": "TC02",
+    "test_passed": true
   },
   {
     "step": 1,
-    "query": "Đặt lịch hẹn tư vấn học vụ cho sinh viên SV2026001 vào lúc 14:00 ngày 15/09/2026 với cố vấn PGS.TS Nguyễn Văn A.",
+    "query": "Đặt lịch tập cho MB001 với HLV Trần Quốc Bảo vào lúc 18:00 ngày 20/09/2026.",
     "action_type": "TOOL_EXECUTION",
-    "tool_name": "schedule_appointment",
+    "thought": "Gemini chọn công cụ schedule_training_session.",
+    "tool_name": "schedule_training_session",
     "arguments": {
-      "advisor_name": "PGS.TS Nguyễn Văn A",
-      "student_id": "SV2026001",
-      "datetime_str": "14:00 15/09/2026"
+      "trainer_name": "HLV Trần Quốc Bảo",
+      "member_id": "MB001",
+      "datetime_str": "18:00 20/09/2026"
     },
     "observation": {
       "status": "SUCCESS",
-      "booking_id": "BK-SV2026001-99",
-      "student_id": "SV2026001",
-      "datetime": "14:00 15/09/2026",
-      "advisor": "PGS.TS Nguyễn Văn A",
-      "message": "Đặt lịch thành công cho sinh viên SV2026001 với PGS.TS Nguyễn Văn A vào lúc 14:00 15/09/2026."
+      "booking_id": "FIT-MB001-001",
+      "member_id": "MB001",
+      "datetime": "18:00 20/09/2026",
+      "trainer": "HLV Trần Quốc Bảo",
+      "message": "Đã đặt lịch tập cho hội viên MB001 với HLV Trần Quốc Bảo vào lúc 18:00 20/09/2026."
     },
-    "latency_ms": 2180.02
+    "llm_latency_ms": 2435.83,
+    "tool_latency_ms": 0.12,
+    "test_id": "TC03",
+    "test_passed": true
   },
   {
     "step": 2,
-    "query": "Đặt lịch hẹn tư vấn học vụ cho sinh viên SV2026001 vào lúc 14:00 ngày 15/09/2026 với cố vấn PGS.TS Nguyễn Văn A.",
+    "query": "Đặt lịch tập cho MB001 với HLV Trần Quốc Bảo vào lúc 18:00 ngày 20/09/2026.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
-    "output": "Đặt lịch thành công cho sinh viên SV2026001 với PGS.TS Nguyễn Văn A vào lúc 14:00 15/09/2026.",
-    "latency_ms": 10.0
+    "thought": "Gemini trả lời trực tiếp.",
+    "output": "Đã đặt lịch tập thành công cho hội viên **MB001** với **HLV Trần Quốc Bảo** vào lúc **18:00 ngày 20/09/2026**.\n\nMã lịch hẹn của bạn là: **FIT-MB001-001**.",
+    "llm_latency_ms": 2532.05,
+    "test_id": "TC03",
+    "test_passed": true
   },
   {
     "step": 1,
-    "query": "Hãy kiểm tra thông tin sinh viên SV2026002 xem ai là cố vấn học tập và đặt lịch hẹn tư vấn với cố vấn đó vào lúc 09:00 ngày 20/09/2026.",
+    "query": "Kiểm tra huấn luyện viên phụ trách MB002 rồi đặt lịch tập với người đó vào lúc 19:00 ngày 22/09/2026.",
     "action_type": "TOOL_EXECUTION",
-    "tool_name": "academic_query",
+    "thought": "Gemini chọn công cụ health_profile_query.",
+    "tool_name": "health_profile_query",
     "arguments": {
-      "student_id": "SV2026002"
+      "member_id": "MB002"
     },
     "observation": {
       "status": "SUCCESS",
-      "student_id": "SV2026002",
+      "member_id": "MB002",
       "data": {
-        "full_name": "Trần Thị Bình",
-        "class": "AI-K4",
-        "gpa": 3.6,
-        "email": "binh.tt@vinuni.edu.vn",
-        "status": "Đang học",
-        "advisor": "TS. Lê Thị B"
+        "full_name": "Lê Hoàng Nam",
+        "age": 28,
+        "fitness_goal": "Tăng cơ",
+        "current_weight_kg": 65,
+        "target_weight_kg": 72,
+        "fitness_level": "Trung bình",
+        "trainer": "HLV Nguyễn Thu Hà",
+        "status": "Đang hoạt động"
       }
     },
-    "latency_ms": 2401.3
+    "llm_latency_ms": 2616.27,
+    "tool_latency_ms": 0.15,
+    "test_id": "TC04",
+    "test_passed": true
   },
   {
     "step": 2,
-    "query": "Hãy kiểm tra thông tin sinh viên SV2026002 xem ai là cố vấn học tập và đặt lịch hẹn tư vấn với cố vấn đó vào lúc 09:00 ngày 20/09/2026.",
+    "query": "Kiểm tra huấn luyện viên phụ trách MB002 rồi đặt lịch tập với người đó vào lúc 19:00 ngày 22/09/2026.",
+    "action_type": "TOOL_EXECUTION",
+    "thought": "Gemini chọn công cụ schedule_training_session.",
+    "tool_name": "schedule_training_session",
+    "arguments": {
+      "member_id": "MB002",
+      "datetime_str": "19:00 22/09/2026",
+      "trainer_name": "HLV Nguyễn Thu Hà"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "booking_id": "FIT-MB002-002",
+      "member_id": "MB002",
+      "datetime": "19:00 22/09/2026",
+      "trainer": "HLV Nguyễn Thu Hà",
+      "message": "Đã đặt lịch tập cho hội viên MB002 với HLV Nguyễn Thu Hà vào lúc 19:00 22/09/2026."
+    },
+    "llm_latency_ms": 2320.18,
+    "tool_latency_ms": 0.11,
+    "test_id": "TC04",
+    "test_passed": true
+  },
+  {
+    "step": 3,
+    "query": "Kiểm tra huấn luyện viên phụ trách MB002 rồi đặt lịch tập với người đó vào lúc 19:00 ngày 22/09/2026.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
-    "output": "Kết quả tra cứu cho sinh viên SV2026002 (Trần Thị Bình): Lớp AI-K4, GPA: 3.6, Email: binh.tt@vinuni.edu.vn, Trạng thái: Đang học, Cố vấn: TS. Lê Thị B.",
-    "latency_ms": 10.0
+    "thought": "Gemini trả lời trực tiếp.",
+    "output": "Đã kiểm tra thông tin cho hội viên **Lê Hoàng Nam (MB002)**. Huấn luyện viên phụ trách của bạn là **HLV Nguyễn Thu Hà**.\n\nTôi đã đặt lịch tập thành công cho bạn với chi tiết như sau:\n- **Mã đặt lịch:** FIT-MB002-002\n- **Thời gian:** 19:00 ngày 22/09/2026\n- **Huấn luyện viên:** HLV Nguyễn Thu Hà\n\nChúc bạn có buổi tập luyện hiệu quả để sớm đạt mục tiêu tăng cơ!",
+    "llm_latency_ms": 3055.86,
+    "test_id": "TC04",
+    "test_passed": true
   },
   {
     "step": 1,
-    "query": "Hãy tra cứu thông tin học vụ của sinh viên có mã SV9999999.",
+    "query": "Hãy tra cứu hồ sơ luyện tập của hội viên MB999.",
     "action_type": "TOOL_EXECUTION",
-    "tool_name": "academic_query",
+    "thought": "Gemini chọn công cụ health_profile_query.",
+    "tool_name": "health_profile_query",
     "arguments": {
-      "student_id": "SV9999999"
+      "member_id": "MB999"
     },
     "observation": {
       "status": "NOT_FOUND",
-      "message": "Không tìm thấy dữ liệu sinh viên có mã 'SV9999999'"
+      "message": "Không tìm thấy hội viên có mã 'MB999'."
     },
-    "latency_ms": 1526.18
+    "llm_latency_ms": 1622.54,
+    "tool_latency_ms": 0.04,
+    "test_id": "TC05",
+    "test_passed": true
   },
   {
     "step": 2,
-    "query": "Hãy tra cứu thông tin học vụ của sinh viên có mã SV9999999.",
+    "query": "Hãy tra cứu hồ sơ luyện tập của hội viên MB999.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
-    "output": "Không tìm thấy dữ liệu sinh viên có mã 'SV9999999'",
-    "latency_ms": 10.0
+    "thought": "Gemini trả lời trực tiếp.",
+    "output": "Rất tiếc, tôi không tìm thấy thông tin hội viên có mã **MB999** trong hệ thống. Vui lòng kiểm tra lại mã hội viên và thử lại.",
+    "llm_latency_ms": 2167.19,
+    "test_id": "TC05",
+    "test_passed": true
   }
 ]

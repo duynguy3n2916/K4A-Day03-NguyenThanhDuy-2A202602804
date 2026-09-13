@@ -2,36 +2,64 @@
   {
     "id": "TC01",
     "type": "direct_query",
-    "question": "Chào bạn, bạn có thể giới thiệu quy chế học vụ cơ bản của Đại học VinUni không?",
-    "expected_behavior": "Chatbot trả lời trực tiếp từ System Prompt, không cần gọi bất kỳ Tool nào.",
+    "question": "Người mới nên bắt đầu tập luyện bao nhiêu buổi mỗi tuần?",
+    "expected_behavior": "Agent trả lời trực tiếp và không gọi Tool.",
+    "expected_tool_sequence": [],
+    "expected_status_sequence": [],
     "complexity": "Low"
   },
   {
     "id": "TC02",
     "type": "single_tool_query",
-    "question": "Hãy tra cứu thông tin học vụ của sinh viên SV2026001.",
-    "expected_behavior": "Agent nhận diện nhu cầu tra cứu, tự động phát sinh Tool Call 'academic_query' với mã SV2026001.",
+    "question": "Hãy tra cứu hồ sơ luyện tập của hội viên MB001.",
+    "expected_behavior": "Agent gọi health_profile_query rồi trả thông tin hồ sơ.",
+    "expected_tool_sequence": [
+      "health_profile_query"
+    ],
+    "expected_status_sequence": [
+      "SUCCESS"
+    ],
     "complexity": "Medium"
   },
   {
     "id": "TC03",
-    "type": "appointment_booking",
-    "question": "Đặt lịch hẹn tư vấn học vụ cho sinh viên SV2026001 vào lúc 14:00 ngày 15/09/2026 với cố vấn PGS.TS Nguyễn Văn A.",
-    "expected_behavior": "Agent tự động phát sinh Tool Call 'schedule_appointment' với đúng thời gian và thông tin sinh viên.",
+    "type": "booking",
+    "question": "Đặt lịch tập cho MB001 với HLV Trần Quốc Bảo vào lúc 18:00 ngày 20/09/2026.",
+    "expected_behavior": "Agent gọi thẳng schedule_training_session với đủ tham số.",
+    "expected_tool_sequence": [
+      "schedule_training_session"
+    ],
+    "expected_status_sequence": [
+      "SUCCESS"
+    ],
     "complexity": "Medium"
   },
   {
     "id": "TC04",
     "type": "multi_step_reasoning",
-    "question": "Hãy kiểm tra thông tin sinh viên SV2026002 xem ai là cố vấn học tập và đặt lịch hẹn tư vấn với cố vấn đó vào lúc 09:00 ngày 20/09/2026.",
-    "expected_behavior": "Agent thực hiện chuỗi suy luận ReAct: Tra cứu cố vấn học tập của sinh viên trước, sau đó tiến hành đặt lịch hẹn.",
+    "question": "Kiểm tra huấn luyện viên phụ trách MB002 rồi đặt lịch tập với người đó vào lúc 19:00 ngày 22/09/2026.",
+    "expected_behavior": "Agent tra cứu hồ sơ trước, lấy tên huấn luyện viên rồi mới đặt lịch.",
+    "expected_tool_sequence": [
+      "health_profile_query",
+      "schedule_training_session"
+    ],
+    "expected_status_sequence": [
+      "SUCCESS",
+      "SUCCESS"
+    ],
     "complexity": "High"
   },
   {
     "id": "TC05",
     "type": "edge_case_handling",
-    "question": "Hãy tra cứu thông tin học vụ của sinh viên có mã SV9999999.",
-    "expected_behavior": "Agent nhận kết quả NOT_FOUND từ Tool và đưa ra phản hồi lịch sự, chính xác không bịa đặt dữ liệu.",
+    "question": "Hãy tra cứu hồ sơ luyện tập của hội viên MB999.",
+    "expected_behavior": "Agent nhận NOT_FOUND và trả lời mà không bịa dữ liệu.",
+    "expected_tool_sequence": [
+      "health_profile_query"
+    ],
+    "expected_status_sequence": [
+      "NOT_FOUND"
+    ],
     "complexity": "Medium"
   }
 ]

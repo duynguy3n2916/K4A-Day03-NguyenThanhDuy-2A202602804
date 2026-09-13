@@ -1,74 +1,147 @@
-# 📊 BÁO CÁO THU HOẠCH NGHIỆM THU BÀI LAB 3 (BƯỚC 3 — SUBMISSION ARTIFACT)
+# BÁO CÁO NGHIỆM THU BÀI LAB 3
 
-> **Họ và Tên Học viên:** Nguyễn Thành Duy  
-> **Mã Sinh Viên / Mã Học viên:** 2A202602804  
-> **Chủ đề Lựa chọn:** Trợ lý Học vụ & Tra cứu Lịch thi VinUni (Gợi ý 1.1)  
+> **Họ và tên:** Nguyễn Thành Duy
+>
+> **Mã học viên:** 2A202602804
+>
+> **Chủ đề:** Trợ lý Huấn luyện Sức khỏe Cá nhân
 
----
+## 1. Agentic Fit Scoring Matrix
 
-## 1. BẢNG CHẤM ĐIỂM AGENTIC FIT SCORING MATRIX (ĐÁNH GIÁ CHỦ ĐỀ)
-
-| Tiêu chí Đánh giá | Mức độ (1 - 5) | Giải trình chi tiết lý do chọn điểm |
+| Tiêu chí | Điểm | Giải trình |
 | :--- | :---: | :--- |
-| **1. Multi-step Reasoning** | 4 / 5 | Bài toán đòi hỏi chuỗi suy luận ReAct đa bước (kiểm tra hồ sơ sinh viên để biết cố vấn học tập trước, sau đó mới tiến hành đặt lịch hẹn). |
-| **2. Tool Interaction** | 5 / 5 | Hệ thống bắt buộc phải tương tác với MCP Server để tra cứu cơ sở dữ liệu học vụ thời gian thực và ghi nhận lịch hẹn. |
-| **3. Dynamic Decision** | 4 / 5 | Bước tiếp theo phụ thuộc hoàn toàn vào kết quả từ Tool: nếu sinh viên hợp lệ thì đặt lịch; nếu sinh viên không tồn tại thì báo lỗi và dừng quy trình. |
-| **4. Long Horizon Goal** | 4 / 5 | Hệ thống giữ vững mục tiêu xuyên suốt việc giải quyết thủ tục học vụ và đặt lịch tư vấn cho sinh viên. |
-| **TỔNG ĐIỂM AGENTIC FIT** | **17 / 20** | *Tổng điểm 17/20 (> 12/20): Bài toán rất phù hợp triển khai Agentic System.* |
+| Multi-step Reasoning | 4/5 | Agent phải tra cứu hồ sơ để biết huấn luyện viên trước khi đặt lịch. |
+| Tool Interaction | 5/5 | Hệ thống dùng một Tool tra cứu và một Tool tạo lịch tập. |
+| Dynamic Decision | 4/5 | Kết quả tra cứu quyết định việc đặt lịch hay dừng khi không tìm thấy hội viên. |
+| Long Horizon Goal | 3/5 | Hệ thống có thể mở rộng để theo dõi mục tiêu qua nhiều buổi, còn bài lab mô phỏng một phiên xử lý. |
+| **Tổng** | **16/20** | Bài toán phù hợp với Agentic System. |
 
----
+## 2. Tool và luồng ReAct
 
-## 2. TRÍCH XUẤT KẾT QUẢ WATERFALL TRACE LOG (SAU KHI CHẠY TEST SUITE TRÊN API THẬT)
+Hai Tool được công bố qua MCP Server:
 
-> ⚠️ **YÊU CẦU NGHIỆM THU:** Mở tệp `.env` điền `GEMINI_API_KEY` (hoặc `OPENAI_API_KEY`) để kết nối LLM thật trước khi thực thi `python src/app.py --all`. Bài nộp chỉ dùng Mock Offline Provider sẽ không đạt điểm nghiệm thực tế.
+- `health_profile_query(member_id)`: tra cứu hồ sơ luyện tập.
+- `schedule_training_session(member_id, datetime_str, trainer_name)`: đặt lịch tập.
 
-Dán 1 đoạn trích xuất log tiêu biểu từ file `docs/trace_waterfall.json` sinh ra từ phản hồi LLM API thật:
+Luồng nhiều bước TC04:
+
+```text
+Yêu cầu đặt lịch nhưng chưa biết huấn luyện viên
+→ health_profile_query(MB002)
+→ Observation: trainer = HLV Nguyễn Thu Hà
+→ schedule_training_session(MB002, 19:00 22/09/2026, HLV Nguyễn Thu Hà)
+→ Final Answer
+```
+
+## 3. Trích Waterfall Trace tiêu biểu
+
+Đoạn sau được trích xuất trực tiếp khi chạy bộ kiểm thử với **Google Gemini API thật (`GeminiProvider`)**, thể hiện đầy đủ độ trễ thực thi (`llm_latency_ms`, `tool_latency_ms`) và tiến trình suy luận đa bước (Thought $\rightarrow$ Action $\rightarrow$ Observation $\rightarrow$ Final Answer) cho ca kiểm thử phức tạp **TC04**:
 
 ```json
 [
   {
     "step": 1,
-    "query": "Hãy tra cứu thông tin học vụ của sinh viên SV2026001.",
+    "query": "Kiểm tra huấn luyện viên phụ trách MB002 rồi đặt lịch tập với người đó vào lúc 19:00 ngày 22/09/2026.",
     "action_type": "TOOL_EXECUTION",
-    "tool_name": "academic_query",
+    "thought": "Gemini chọn công cụ health_profile_query.",
+    "tool_name": "health_profile_query",
     "arguments": {
-      "student_id": "SV2026001"
+      "member_id": "MB002"
     },
     "observation": {
       "status": "SUCCESS",
-      "student_id": "SV2026001",
+      "member_id": "MB002",
       "data": {
-        "full_name": "Nguyễn Văn An",
-        "class": "AI-K4",
-        "gpa": 3.85,
-        "email": "an.nv@vinuni.edu.vn",
-        "status": "Đang học",
-        "advisor": "PGS.TS Nguyễn Văn A"
+        "full_name": "Lê Hoàng Nam",
+        "age": 28,
+        "fitness_goal": "Tăng cơ",
+        "current_weight_kg": 65,
+        "target_weight_kg": 72,
+        "fitness_level": "Trung bình",
+        "trainer": "HLV Nguyễn Thu Hà",
+        "status": "Đang hoạt động"
       }
     },
-    "latency_ms": 1956.73
+    "llm_latency_ms": 2616.27,
+    "tool_latency_ms": 0.15,
+    "test_id": "TC04",
+    "test_passed": true
   },
   {
     "step": 2,
-    "query": "Hãy tra cứu thông tin học vụ của sinh viên SV2026001.",
+    "query": "Kiểm tra huấn luyện viên phụ trách MB002 rồi đặt lịch tập với người đó vào lúc 19:00 ngày 22/09/2026.",
+    "action_type": "TOOL_EXECUTION",
+    "thought": "Gemini chọn công cụ schedule_training_session.",
+    "tool_name": "schedule_training_session",
+    "arguments": {
+      "member_id": "MB002",
+      "datetime_str": "19:00 22/09/2026",
+      "trainer_name": "HLV Nguyễn Thu Hà"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "booking_id": "FIT-MB002-002",
+      "member_id": "MB002",
+      "datetime": "19:00 22/09/2026",
+      "trainer": "HLV Nguyễn Thu Hà",
+      "message": "Đã đặt lịch tập cho hội viên MB002 với HLV Nguyễn Thu Hà vào lúc 19:00 22/09/2026."
+    },
+    "llm_latency_ms": 2320.18,
+    "tool_latency_ms": 0.11,
+    "test_id": "TC04",
+    "test_passed": true
+  },
+  {
+    "step": 3,
+    "query": "Kiểm tra huấn luyện viên phụ trách MB002 rồi đặt lịch tập với người đó vào lúc 19:00 ngày 22/09/2026.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
-    "output": "Kết quả tra cứu cho sinh viên SV2026001 (Nguyễn Văn An): Lớp AI-K4, GPA: 3.85, Email: an.nv@vinuni.edu.vn, Trạng thái: Đang học, Cố vấn: PGS.TS Nguyễn Văn A.",
-    "latency_ms": 10.0
+    "thought": "Gemini trả lời trực tiếp.",
+    "output": "Đã kiểm tra thông tin cho hội viên **Lê Hoàng Nam (MB002)**. Huấn luyện viên phụ trách của bạn là **HLV Nguyễn Thu Hà**.\n\nTôi đã đặt lịch tập thành công cho bạn với chi tiết như sau:\n- **Mã đặt lịch:** FIT-MB002-002\n- **Thời gian:** 19:00 ngày 22/09/2026\n- **Huấn luyện viên:** HLV Nguyễn Thu Hà\n\nChúc bạn có buổi tập luyện hiệu quả để sớm đạt mục tiêu tăng cơ!",
+    "llm_latency_ms": 3055.86,
+    "test_id": "TC04",
+    "test_passed": true
   }
 ]
 ```
 
----
+Toàn bộ vết thực thi của cả 5 test cases được lưu tại: [`docs/trace_waterfall.json`](trace_waterfall.json).
 
-## 3. TỔNG KẾT KẾT QUẢ NGHIỆM THU & NỘP BÀI
+## 4. Kết quả kiểm thử
 
-- [x] Đã điền API Key thật trong `.env` và xác nhận Agent chạy mượt mà trên LLM API thật (Google Gemini `gemini-3.6-flash`).
-- **Tổng số Test Cases đã chạy thành công:** 5 / 5 test cases.
-- **Số lượt gọi Tool qua MCP Server chính xác:** 4 / 4 lượt (TC02 tra cứu, TC03 đặt lịch, TC04 tra cứu và đặt lịch, TC05 xử lý edge case NOT_FOUND).
-- **Kết quả đẩy Repo nộp bài:** [x] Đã Commit và Push mã nguồn thành công lên GitHub cá nhân.
+### A. Kiểm thử với Live LLM API (Google Gemini)
 
----
+Lệnh thực thi:
 
-> ✅ **HOÀN TẤT NỘP BÀI:** Sao chép đường link GitHub Repository cá nhân của bạn và dán vào ô nộp bài trên hệ thống LMS VLearn để hoàn tất Bài Lab 3!
+```powershell
+python src/app.py --all
+```
 
+| Test | Nội dung | Tool sequence kỳ vọng | Trạng thái thực tế | Độ trễ LLM trung bình | Kết quả |
+| :--- | :--- | :--- | :---: | :---: | :---: |
+| **TC01** | Câu hỏi luyện tập chung | Không gọi Tool | Không gọi Tool | 4,513 ms | **PASS** |
+| **TC02** | Tra cứu MB001 | `health_profile_query` | `health_profile_query` [SUCCESS] | 2,095 ms | **PASS** |
+| **TC03** | Đặt lịch đủ dữ liệu | `schedule_training_session` | `schedule_training_session` [SUCCESS] | 2,484 ms | **PASS** |
+| **TC04** | Tra cứu rồi đặt lịch | `health_profile_query → schedule_training_session` | `query → schedule` [SUCCESS, SUCCESS] | 2,664 ms | **PASS** |
+| **TC05** | Hội viên không tồn tại | `health_profile_query → NOT_FOUND` | `health_profile_query` [NOT_FOUND] | 1,895 ms | **PASS** |
+
+**Kết quả nghiệm thu Live API:** **5/5 test PASS (100%)**, không gặp lỗi hoặc fallback sang Mock.
+
+### B. Kiểm thử Offline (Mock Offline Provider)
+
+Lệnh thực thi:
+
+```powershell
+python src/app.py --all --mock
+```
+
+**Kết quả Offline:** **5/5 test PASS (100%)**.
+
+## 5. Nghiệm thu API thật và nộp bài
+
+- [x] File log `docs/trace_waterfall.json` được tạo thành công với đầy đủ các bước thực thi từ LLM API thật.
+- [x] Đã hoàn thiện Tool Schema, backend, MCP Server và ReAct Loop.
+- [x] Chạy 5/5 test thành công bằng LLM API thật (`python src/app.py --all`).
+- [x] Chạy 5/5 test thành công bằng Mock Offline (`python src/app.py --all --mock`).
+- [x] Đã thử nghiệm chế độ đàm thoại trực tiếp (`python src/app.py --interactive`).
+- [x] Đã hoàn thiện toàn bộ biên bản kiểm thử trong `docs/trace_eval.md`.
+- [x] Sẵn sàng commit, push GitHub và nộp liên kết lên VLearn.

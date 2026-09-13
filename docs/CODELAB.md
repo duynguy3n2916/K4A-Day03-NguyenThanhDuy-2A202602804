@@ -111,7 +111,7 @@ graph TD
 
 ### 🚩 CHECKPOINT 1 (Mốc phút 30)
 - **Tín hiệu hoàn thành (Pass Signal):** Bảng Scoring Matrix trong [`trace_eval.md`](trace_eval.md) được điền đầy đủ điểm và giải trình. File `config/test_cases.json` không còn dòng `TODO`.
-- **Nếu bạn bị chậm:** Chọn ngay Chủ đề 1.1 (Trợ lý Học vụ Sinh viên VinUni) có sẵn và điền nhanh điểm số để chuyển tiếp ngay sang Task 1.2.
+- **Chủ đề project này:** Trợ lý Huấn luyện Sức khỏe Cá nhân, tra cứu hồ sơ luyện tập và đặt lịch với huấn luyện viên.
 
 ---
 
@@ -121,24 +121,25 @@ graph TD
 Mô hình LLM hiểu công cụ thông qua định dạng cấu trúc JSON Schema. Một Tool Schema chuẩn phải mô tả rõ tên công cụ (`name`), mục đích sử dụng (`description`) và các kiểu dữ liệu của tham số đầu vào (`parameters`).
 
 ### Thao tác thực hành:
-1. Mở tệp `src/tools.py`. Quan sát công cụ mẫu `academic_query` đã được định nghĩa sẵn.
-2. Tìm mốc `# TODO 1.2` và hoàn thiện khai báo JSON Schema cho công cụ:
-   - `schedule_appointment`: Công cụ đặt lịch hẹn (cần tham số `student_id`, `datetime_str`, `advisor_name`).
+1. Mở tệp `src/tools.py` và quan sát hai Tool Schema đã hoàn thiện.
+2. Hai công cụ của chủ đề Health Coach gồm:
+   - `health_profile_query`: tra cứu theo `member_id`.
+   - `schedule_training_session`: đặt lịch bằng `member_id`, `datetime_str`, `trainer_name`.
 
 **Cấu trúc Tool Schema mẫu tham khảo:**
 ```json
 {
-  "name": "academic_query",
-  "description": "Tra cứu hồ sơ và thông tin học vụ của sinh viên VinUni bằng mã sinh viên.",
+  "name": "health_profile_query",
+  "description": "Tra cứu hồ sơ luyện tập của hội viên bằng mã hội viên.",
   "parameters": {
     "type": "object",
     "properties": {
-      "student_id": {
+      "member_id": {
         "type": "string",
-        "description": "Mã sinh viên cần tra cứu (ví dụ: 'SV2026001')"
+        "description": "Mã hội viên cần tra cứu (ví dụ: 'MB001')"
       }
     },
-    "required": ["student_id"]
+    "required": ["member_id"]
   }
 }
 ```
@@ -153,8 +154,8 @@ Mô hình LLM hiểu công cụ thông qua định dạng cấu trúc JSON Schem
 MCP là tiêu chuẩn mở kết nối giữa Agentic Systems và các nguồn dữ liệu/công cụ bên ngoài. Trong kiến trúc này, công cụ không nằm trong LLM mà được phục vụ độc lập từ MCP Server (`src/mcp_server.py`).
 
 ### Thao tác thực hành:
-1. Mở tệp `src/mcp_server.py` kiểm tra lớp `MCPAcademicServer`.
-2. Tìm mốc `# TODO 2.1` và hoàn thiện hàm `call_tool(self, tool_name, arguments)` nhận yêu cầu, gọi `dispatch_tool_call()` và đóng gói kết quả phản hồi chuẩn JSON-RPC 2.0.
+1. Mở tệp `src/mcp_server.py` kiểm tra lớp `MCPHealthCoachServer`.
+2. Quan sát hàm `call_tool(self, tool_name, arguments)` nhận yêu cầu, gọi `dispatch_tool_call()` và đóng gói kết quả phản hồi JSON-RPC 2.0.
 3. Mở terminal và chạy lệnh kiểm tra MCP Server:
    ```bash
    python src/mcp_server.py
@@ -163,10 +164,10 @@ MCP là tiêu chuẩn mở kết nối giữa Agentic Systems và các nguồn d
 ### 🚩 CHECKPOINT 2 (Mốc phút 70)
 - **Tín hiệu hoàn thành (Pass Signal):** Terminal in ra thông báo:
   ```text
-  ✅ [MCP SERVER] Đã khởi tạo thành công vinuni-academic-mcp-server (Version: 2026.1.0)
+  ✅ [MCP SERVER] Đã khởi tạo thành công personal-health-coach-mcp-server (Version: 2026.1.0)
   📦 Số lượng Tools công bố qua MCP: 2
   ```
-- **Nếu bạn bị chậm:** Kiểm tra lại lỗi cú pháp trong `src/tools.py`. Nếu gặp `SyntaxError`, đối chiếu với Tool Schema mẫu `academic_query` để sửa các dấu ngoặc nhọn `{}`.
+- **Nếu gặp lỗi:** Chạy `python -m py_compile src/tools.py` và kiểm tra dấu ngoặc trong hai Tool Schema.
 
 ---
 

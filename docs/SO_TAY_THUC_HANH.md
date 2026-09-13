@@ -31,7 +31,7 @@ gantt
 ### 🔷 PHẦN 1 (45 phút): Đánh giá Agentic Fit & Tool Schemas
 * [x] Chọn 1 chủ đề thực tế từ tệp `docs/DANH_SACH_DE_TAI.md`.
 * [x] Điền bảng Scoring Matrix 4 tiêu chí Agentic Fit vào file `docs/trace_eval.md`.
-* [x] Khai báo Tool Schema đúng chuẩn JSON Schema cho `schedule_appointment` vào file `src/tools.py`.
+* [x] Khai báo Tool Schema cho `health_profile_query` và `schedule_training_session` trong `src/tools.py`.
 * [x] Thêm 5 câu test case thực tế vào file `config/test_cases.json`.
 
 ---

@@ -43,8 +43,8 @@ python src/app.py --all
 
 **Kỳ vọng Output màn hình:**
 ```text
-✅ [MOCK OFFLINE MODE PASS]: Môi trường đã sẵn sàng! 
-📊 [KẾT QUẢ TEST SUITE]: 2 Đã chạy (TC01, TC02 mẫu) | 3 Đang chờ viết câu hỏi (TODO)
+✅ [MOCK OFFLINE MODE PASS]: Môi trường đã sẵn sàng!
+📊 [KẾT QUẢ TEST SUITE]: 5/5 test PASS
 ```
 
 > 🔑 **QUY ĐỊNH BẮT BUỘC VỀ API KEY VÀ NỘP BÀI (SUBMISSION REQUIREMENT):**  
@@ -62,11 +62,11 @@ Mục tiêu cốt lõi của Bài Lab này là giúp học viên tự tay phát 
 
 Thay vì chỉ sinh văn bản hội thoại đơn thuần như Chatbot cơ bản, tác tử (Agent) của bạn sẽ có khả năng:
 1. **Tự suy luận và chọn công cụ:** Chủ động kích hoạt vòng lặp ReAct (`Thought -> Action -> Observation`) qua giao thức **Model Context Protocol (MCP)** để truy vấn dữ liệu thực tế.
-2. **Tổng hợp câu trả lời chính xác:** Sử dụng dữ liệu thực tế từ Tool trả về để trả lời sinh viên, tránh hiện tượng ảo giác (Hallucination).
+2. **Tổng hợp câu trả lời chính xác:** Sử dụng dữ liệu từ Tool để trả lời hội viên, tránh hiện tượng ảo giác (Hallucination).
 3. **Trích xuất bằng chứng (Trace Log):** Ghi lại file vết `docs/trace_waterfall.json` chứng minh chuỗi suy luận từng bước của Agent.
 
 > 🌐 **GIAO THỨC MODEL CONTEXT PROTOCOL (MCP):**  
-> Mã nguồn [`src/mcp_server.py`](src/mcp_server.py) mô phỏng kiến trúc MCP Server chuẩn (giao tiếp Client-Server độc lập qua giao thức JSON-RPC 2.0). Agent Core ([`src/app.py`](src/app.py)) đóng vai trò MCP Client gửi yêu cầu thực thi Tool tới MCP Server.
+> Mã nguồn [`src/mcp_server.py`](src/mcp_server.py) mô phỏng lớp MCP Server và đóng gói phản hồi theo JSON-RPC 2.0. Agent Core ([`src/app.py`](src/app.py)) gọi MCP Server để thực thi Tool. Trong phạm vi bài lab, hai phần chạy cùng một tiến trình Python.
 
 ---
 
@@ -104,8 +104,8 @@ Học viên làm bài lần lượt theo đúng luồng 3 bước tinh giản d�
 │   └── 📄 test_cases.json         <-- 🟢 Bộ 5 Test Cases tùy biến theo đề tài của bạn
 │
 ├── 📁 src/                      <-- 💻 MÃ NGUỒN PYTHON
-│   ├── 📄 mcp_server.py         <-- 🌐 MCP Server quản lý Tool Registry & JSON-RPC Dispatcher
-│   ├── 📄 tools.py              <-- 🛠️ Backend Tool Schemas JSON & Execution Layer
+│   ├── 📄 mcp_server.py         <-- 🌐 MCP Server cho Health Coach & JSON-RPC Dispatcher
+│   ├── 📄 tools.py              <-- 🛠️ Tool tra cứu hồ sơ và đặt lịch tập
 │   ├── 📄 prompts.py            <-- 🛡️ System Prompts cho Chatbot và ReAct Agent
 │   ├── 📄 providers.py          <-- 🔌 Multi-Provider LLM Adapter (Gemini/OpenAI/Mock)
 │   ├── 📄 app.py                <-- 🚀 MCP Client & Core Agent App ghép nối ReAct Loop & Trace Log
