@@ -46,7 +46,7 @@ Dán 1 đoạn trích xuất log tiêu biểu từ file `docs/trace_waterfall.js
         "advisor": "PGS.TS Nguyễn Văn A"
       }
     },
-    "latency_ms": 312.4
+    "latency_ms": 1956.73
   },
   {
     "step": 2,
